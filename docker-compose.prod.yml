@@ -1,0 +1,11 @@
+version: "3"
+services:
+  node-app-prod: 
+    build:
+      context: .  # Specify the build context (current directory)
+    ports:
+      - "5000:6000"  # Map host port 4000 to container port 3000
+    environment:
+      - NODE_ENV=production  # Set environment to production
+      - PORT=6000
+    command: npm run prod  # Run the production command

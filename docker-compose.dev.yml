@@ -1,0 +1,32 @@
+version: "3"
+services:
+  node-app-dev: 
+    build:
+      context: . # Specify the build context (current directory)
+    ports:
+      - "4000:3000"
+    volumes:
+      - ./:/app
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+      - MONGODB_URI=mongodb+srv://abhishek:abhishek@cluster0.9gscooe.mongodb.net/learn
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    command: npm run dev
+    depends_on:
+      - redis
+      - rabbitmq
+
+  redis:
+    image: redis
+
+
+  rabbitmq:
+    image: rabbitmq:management
+    ports:
+      - "5672:5672"   # RabbitMQ port
+      - "15672:15672" # RabbitMQ management UI
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest  

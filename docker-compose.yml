@@ -1,0 +1,15 @@
+version: "3"
+services:
+  node-app-conta: 
+    build:
+      context: .  # Specify the build context (current directory)
+    ports:
+      - "4000:3000"  # Map host port 4000 to container port 3000
+    volumes:
+      - ./:/app  # Mount the current directory to /app in the container
+      - /app/node_modules  # Persist node_modules
+    environment:
+      - NODE_ENV=development  # Set environment to development
+      - MONGODB_URI=mongodb+srv://abhishek:abhishek@cluster0.9gscooe.mongodb.net/learn
+
+    command: npm run dev  # Run the development command
