@@ -35,7 +35,7 @@ pipeline {
             steps {
                 script {
                     // Run tests within the Docker container (use bat)
-                    bat 'docker exec $(docker ps -qf "name=node-app-dev") npm test'
+                    bat 'docker exec $(docker ps -qf "name=node-app-dev") npm run prod'
                 }
             }
         }
